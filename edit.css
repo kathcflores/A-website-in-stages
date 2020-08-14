@@ -1,0 +1,285 @@
+/* login */
+
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica}
+.orgList{
+    height: 445.5px;
+    overflow-y: auto;
+}
+ .workList{
+    height: 445.5px;
+    overflow-y: auto;
+} 
+
+#login {
+    border: 3px solid #0d203b;
+}
+
+input[type=email], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+
+}
+
+#b_log {
+  background-color: #5CE1E6;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+#b_log:hover {
+  background-color: #f85c70;
+}
+
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+form input:focus{
+  outline: none;
+  padding-bottom: 8px;
+  color: #0d203b;
+  background-color: #F7A3B1;
+}
+/*  */
+main{
+    display:none;
+    
+}
+
+/* Lists */
+.same{
+  list-style-type: none;
+  padding: 0;
+  overflow-y: auto;
+ }
+/*
+ #me-List>li{
+  list-style-type: none;
+  font-size: 20px;
+  color: white;
+  padding: 16px;
+  position: relative;
+} */
+
+
+.same li{
+  padding: 20px;
+  background: #5CE1E6;
+  font-size: 20px;
+  color: #0d203b;
+  padding: 16px;
+  position: relative;
+  border-bottom: 1px solid #e6e6e6;
+  height: 150px;
+}
+
+.same li:nth-child(1){
+  border-radius: 0px 110px 0px 0px;
+}
+
+.same li:nth-child(even){
+  padding: 20px;
+  background: #F7A3B1;
+}
+
+li span{
+  display: block;
+}
+
+.same li span:nth-child(2), span:nth-child(3), span:nth-child(4){
+  font-size: 16px;
+  margin-top: 6px;
+  color: white;
+}
+
+li div{
+  position: absolute;
+  top: 10px;
+  right: 70px;
+  background: white;
+  color: #0d203b;
+  width: 40px;
+  text-align: center;
+  padding: 10px 0;
+  font-weight:  bold;
+  cursor:  pointer;
+  border-radius: 40px 40px 40px 40px;
+}
+
+li div:hover{
+  background: #65c6f4;
+  color: white;
+}
+
+/* form2 */
+#add-edu-form input{
+  float: left;
+  width: 38%;
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid #eee;
+  margin: 0 1%;
+  padding: 10px;
+  display: block;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+#add-edu-form:after{
+  content: '';
+  clear: both;
+  display: block;
+}
+
+.plus{
+  border: 0;
+  background: #65c6f4;
+  border-radius: 10px;
+  padding: 13px;
+  width: 14%;
+  box-shadow: -1px 0px 1px rgba(0,0,0,0.1);
+  font-weight: bold;
+  font-family: ubuntu;
+  letter-spacing: 1px;
+  color: #f85c70;
+} 
+
+.plus:hover{
+  background: #f85c70;
+  color: white;
+}
+
+#add-org-form input{
+  float: left;
+  width: 38%;
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid #eee;
+  margin: 0 1%;
+  padding: 10px;
+  display: block;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+#add-org-form:after{
+  content: '';
+  clear: both;
+  display: block;
+}
+
+#orgplus{
+  border: 0;
+  background: #5CE1E6;
+  border-radius: 10px;
+  padding: 13px;
+  width: 14%;
+  box-shadow: -1px 0px 1px rgba(0,0,0,0.1);
+  font-weight: bold;
+  font-family: ubuntu;
+  letter-spacing: 1px;
+  color: #0d203b;
+} 
+
+#orgplus:hover{
+  background: #65c6f4;
+  color: white;
+}
+
+#add-work-form input{
+  float: left;
+  width: 38%;
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid #eee;
+  margin: 0 1%;
+  padding: 10px;
+  display: block;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+#add-work-form:after{
+  content: '';
+  clear: both;
+  display: block;
+}
+
+#workplus{
+  border: 0;
+  background: #F7A3B1;
+  border-radius: 10px;
+  padding: 13px;
+  width: 14%;
+  box-shadow: -1px 0px 1px rgba(0,0,0,0.1);
+  font-weight: bold;
+  font-family: ubuntu;
+  letter-spacing: 1px;
+  color: #0d203b;
+} 
+
+#workplus:hover{
+  background: #f85c70;
+  color: white;
+}
+
+#add-me-form input{
+  float: left;
+  width: 38%;
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid #eee;
+  margin: 0 1%;
+  padding: 10px;
+  display: block;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+#add-me-form:after{
+  content: '';
+  clear: both;
+  display: block;
+}
+
+#meUpdate{
+  border: 0;
+  background: #f85c70;
+  border-radius: 10px;
+  padding: 13px;
+  width: 14%;
+  box-shadow: -1px 0px 1px rgba(0,0,0,0.1);
+  font-weight: bold;
+  font-family: ubuntu;
+  letter-spacing: 1px;
+  color: white;
+} 
+
+#meUpdate:hover{
+  background: #5CE1E6;
+  color: #0d203b;
+}
