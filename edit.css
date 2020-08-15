@@ -71,22 +71,25 @@ main{
 }
 
 /* Lists */
+li span{
+  display: block;
+}
+
 .same{
   list-style-type: none;
   padding: 0;
   overflow-y: auto;
  }
-/*
- #me-List>li{
-  list-style-type: none;
-  font-size: 20px;
+
+ 
+.same li span:nth-child(2), span:nth-child(3), span:nth-child(4){
+  font-size: 16px;
+  margin-top: 6px;
   color: white;
-  padding: 16px;
-  position: relative;
-} */
+}
 
-
-.same li{
+/* education */
+#edu-list li{
   padding: 20px;
   background: #5CE1E6;
   font-size: 20px;
@@ -97,23 +100,53 @@ main{
   height: 150px;
 }
 
-.same li:nth-child(1){
+#edu-list li:nth-child(1){
   border-radius: 0px 110px 0px 0px;
 }
 
-.same li:nth-child(even){
+#edu-list li:nth-child(even){
   padding: 20px;
   background: #F7A3B1;
 }
-
-li span{
-  display: block;
+/* organization */
+#org-list li{
+  padding: 20px;
+  background: #5CE1E6;
+  font-size: 20px;
+  color: #0d203b;
+  padding: 16px;
+  position: relative;
+  border-bottom: 1px solid #e6e6e6;
+  height: 150px;
 }
 
-.same li span:nth-child(2), span:nth-child(3), span:nth-child(4){
-  font-size: 16px;
-  margin-top: 6px;
-  color: white;
+#org-list li:nth-child(1){
+  border-radius: 0px 110px 0px 0px;
+}
+
+#org-list li:nth-child(even){
+  padding: 20px;
+  background: #65c6f4;
+}
+/* works */
+#work-list li{
+  padding: 20px;
+  background: #F7A3B1;
+  font-size: 20px;
+  color: #0d203b;
+  padding: 16px;
+  position: relative;
+  border-bottom: 1px solid #e6e6e6;
+  height: 150px;
+}
+
+#work-list li:nth-child(1){
+  border-radius: 0px 110px 0px 0px;
+}
+
+#work-list li:nth-child(even){
+  padding: 20px;
+  background: #f85c70;
 }
 
 li div{
@@ -131,7 +164,7 @@ li div{
 }
 
 li div:hover{
-  background: #65c6f4;
+  background: #0d203b;
   color: white;
 }
 
@@ -266,9 +299,9 @@ li div:hover{
   display: block;
 }
 
-#meUpdate{
+#upd{
   border: 0;
-  background: #f85c70;
+  background: #F7A3B1;
   border-radius: 10px;
   padding: 13px;
   width: 14%;
@@ -276,10 +309,24 @@ li div:hover{
   font-weight: bold;
   font-family: ubuntu;
   letter-spacing: 1px;
-  color: white;
+  color: #0d203b;
 } 
 
-#meUpdate:hover{
-  background: #5CE1E6;
-  color: #0d203b;
+#upd:hover{
+  background: #f85c70;
+  color: white;
+}
+
+a.icon-block {
+  display:inline-block;
+  width:30px;
+  text-align:center;
+}
+
+.Mleft{
+  margin-left: 30%;
+}
+
+.mleft{
+  margin-left: 50px;
 }

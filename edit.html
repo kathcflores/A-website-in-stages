@@ -90,6 +90,14 @@
             var defaultProject = firebase.initializeApp(firebaseconfig);
             var db = firebase.firestore();
             
+            firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+
+            } else {
+                location.href="/index.html"
+            }
+            });
+
              $("main").hide();
             
             //Login
@@ -218,23 +226,61 @@
             });
             }
 
-        //About
-        const meList = document.querySelector('#me-list');
+            //About
+            const meList = document.querySelector('#me-list');
+            const meform = document.querySelector('#add-me-form');
 
-        //create about-me elements
-        function renderMe(doc){
-        let li = document.createElement('li');
-        let me = document.createElement('span');
+            //create About-me elements
+            function renderMe(doc){
+                let li = document.createElement('li');
+                let me = document.createElement('span');
 
-        li.setAttribute('data-id', doc.id);
-        me.textContent = doc.data().me;
+                li.setAttribute('data-id', doc.id);
+                me.textContent = doc.data().me;
 
-        li.appendChild(me);
-        meList.appendChild(li);
-        }
+                li.appendChild(me);
+
+                meList.appendChild(li);
+            }
+
+            // updating data
+
+            meform.addEventListener('submit', (e) => {
+                e.preventDefault();
+                db.collection('intro').doc("about").update({
+                    me: meform.me.value,
+                });
+                meform.me.value = '';
+            });
+
+        //Links
+        const linkList = document.querySelector('#link-list');
+            
+        //create Link elements
+            function renderLink(doc){
+            let li = document.createElement('li');
+            let linkedin = document.createElement('span');
+            let twitter = document.createElement('span');
+            let github = document.createElement('span');
+            let fb = document.createElement('span');
+
+            li.setAttribute('data-id', doc.id);
+            linkedin.textContent = doc.data().linkedin;
+            twitter.textContent = doc.data().twitter;
+            github.textContent = doc.data().github;
+            fb.textContent = doc.data().fb;
+
+            li.appendChild(linkedin);
+            li.appendChild(twitter);
+            li.appendChild(github);
+            li.appendChild(fb);
+            li.append
+
+            linkList.appendChild(li);
+            }
 
         // getting data
-        db.collection('education').orderBy('year_end').onSnapshot(snapshot => {
+        db.collection('education').orderBy("year_end","desc").onSnapshot(snapshot => {
             let changes = snapshot.docChanges();
             changes.forEach(change => {
                 console.log(change.doc.data());
@@ -247,7 +293,7 @@
             });
         });
 
-        db.collection('organizations').orderBy('name').onSnapshot(snapshot => {
+        db.collection('organizations').orderBy("name","asc").onSnapshot(snapshot => {
             let changes = snapshot.docChanges();
             changes.forEach(change => {
                 console.log(change.doc.data());
@@ -260,7 +306,7 @@
             });
         });
 
-        db.collection('works').orderBy('year').onSnapshot(snapshot => {
+        db.collection('works').orderBy("year","desc").onSnapshot(snapshot => {
             let changes = snapshot.docChanges();
             changes.forEach(change => {
                 console.log(change.doc.data());
@@ -273,9 +319,19 @@
             });
         });
 
-        db.collection('intro').get().then(snapshot => {
+        db.collection('intro').onSnapshot(snapshot => {
+            let changes = snapshot.docChanges();
+            changes.forEach(change => {
+                console.log(change.doc.data());
+                if(change.type == 'added'){
+                    renderMe(change.doc);
+                }
+            });
+        });
+
+        db.collection('links').get().then(snapshot => {
             snapshot.docs.forEach(doc => {
-                renderMe(doc);
+                renderLink(doc);
             });
         });
 
@@ -317,16 +373,6 @@
             workForm.name.value = '';
             workForm.year.value = '';
         });
-        /*
-            db.collection('links').get().then(snapshot => {
-                snapshot.docs.forEach(doc => {
-                    document.getElementById('linkList').innerHTML += `<a href="${doc.data().linkedin}"</a>`;
-                    document.getElementById('linkList').innerHTML += `<a href="${doc.data().twitter}"</a>`;
-                    document.getElementById('linkList').innerHTML += `<a href="${doc.data().github}"</a>`;
-                    document.getElementById('linkList').innerHTML += `<a href="${doc.data().fb}"</a>`;
-                            
-                });
-            });*/
     });
 </script>
 </head>
@@ -335,19 +381,41 @@
     <main>
 
         <!-- Navbar -->
-    <div class="w3-top">
-        <div class="w3-bar w3-blue w3-padding w3-large">
-            <a href="#home" class="w3-bar-item w3-button"><img src="images/logo_32px.png"></a>
-            <div class="w3-right">
-                <a href="#edu" class="w3-bar-item w3-button w3-mobile">Education</a>
-                <a href="#org" class="w3-bar-item w3-button w3-mobile">Oraganizations</a>
-                <a href="#works" class="w3-bar-item w3-button w3-mobile">Works</a>
-                <a href="#about" class="w3-bar-item w3-button w3-mobile">About</a>
-                <a href="#contact" class="w3-bar-item w3-button w3-mobile">Contact</a>
+        <div class="w3-top">
+            <div class="w3-bar w3-blue w3-padding w3-large ">
+                <a href="#home" class="w3-bar-item w3-button"><img src="images/logo_32px.png"></a>
+                <div class="w3-right">
+                    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+                    <a href="#edu" class="w3-bar-item w3-button w3-mobile w3-hide-small">Education</a>
+                    <a href="#org" class="w3-bar-item w3-button w3-mobile w3-hide-small">Oraganizations</a>
+                    <a href="#works" class="w3-bar-item w3-button w3-mobile w3-hide-small">Works</a>
+                    <a href="#about" class="w3-bar-item w3-button w3-mobile w3-hide-small">About</a>
+                    <a href="#contact" class="w3-bar-item w3-button w3-mobile w3-hide-small">Contact</a>
+                </div>
             </div>
         </div>
-    </div>
-
+    
+        <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+        <div id="smallNav" class="w3-bar-block w3-blue w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+            <a href="#edu" class="w3-bar-item w3-button w3-padding-large">Education</a>
+            <a href="#org" class="w3-bar-item w3-button w3-padding-large">Oraganizations</a>
+            <a href="#works" class="w3-bar-item w3-button w3-padding-large">Works</a>
+            <a href="#about" class="w3-bar-item w3-button w3-padding-large">About</a>
+            <a href="#contact" class="w3-bar-item w3-button w3-padding-large">Contact</a>
+       </div>
+        <script>
+            // Used to toggle the menu on small screens when clicking on the menu button
+            function myFunction() {
+              var x = document.getElementById("smallNav");
+              if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+              } else { 
+                x.className = x.className.replace(" w3-show", "");
+              }
+            }
+            
+            </script>
+            
     <!-- Home -->
     <a name="home"></a>
     <div class="w3-content" style="max-width:2000px;margin-top:46px">
@@ -387,9 +455,7 @@
     <!-- Oraganizations  -->
     <a name="org"></a>
     <section class="section-org">
-    <div class="w3-half">
-
-        <div class="w3-hover-text-teal w3-container w3-margin-left w3-left w3-padding-16">
+        <div class="w3-hover-text-light-blue w3-container w3-margin-left w3-left w3-padding-16">
             <h2>Oraganizations</h2>
           </div>
           <div class="w3-row-padding">
@@ -407,15 +473,14 @@
                     <ul id="org-list" class="same"></ul>
                 </div>
             </div>
-     </div>       
+    
     </section>
 
     <!-- Works -->
 
     <a name="works"></a>
     <section class="section-works">
-    <div class="w3-half ">
-        <div class="w3-hover-text-pink w3-container w3-margin-left w3-left w3-padding-16">
+        <div class="w3-hover-text-red w3-container w3-margin-left w3-left w3-padding-16">
             <h2>Works and Projects</h2>
         </div>
           <div class="w3-row-padding"></div>
@@ -432,7 +497,7 @@
                 </form>
                 <ul id="work-list" class="same"></ul>        
             </div>
-        </div>
+
     </section>
 
     <!-- Others -->
@@ -452,7 +517,11 @@
         </div>    
       
             <div class="meList w3-col m6 w3-padding-large w3-margin-left" >
-                <ul id="me-list"></ul> 
+                <form id="add-me-form">
+                    <input type="text" name="me" placeholder="Edit information">
+                    <button id="upd">Update</button>
+                </form>
+                <ul id="me-list" style="list-style-type: none;"></ul> 
             </div>
             <div class="mySlides w3-display-container w3-margin-right w3-right" >
                 <img src="images/cat1.PNG" style="width: 235px; height: 200px;">
@@ -464,51 +533,33 @@
     <a name="contact"></a>
     
     <section class="section-contact">
-        <div class="cat2 w3-display-container  w3-left; w3-margin-left" >
-            <img src="images/cat2.png" style="position: absolute; width: 235px; height: 250px; ">
-        </div>
-        <div class="max-width:500px; margin-top: 50px;">
-            <div class="mySlides w3-display-container w3-right">
-                <img src="images/left.png" style="width: auto; height: 400px;">
-            </div>
+        <div class="cat2 w3-display-container w3-left w3-margin-left" >
+            <img src="images/cat2.png" style="width: 235px; height: 250px; ">
         </div>
 
-        <div class="w3-half w3-right w3-container w3-center w3-padding-16">
-            <h1 class="w3-hover-text-light-blue">Contact me!</h1>
-            <div class="w3-padding-64">
-
-            <div class="linkedin">
-                <a href="https://www.linkedin.com/in/kathleen-flores-3761371b4/">
-                    <h2><i class="fa fa-linkedin w3-hover-text-red"></i></h2> 
-                </a>
+        <div class="w3-half w3-container w3-center w3-padding-16">
+            <h1 class="w3-hover-text-light-blue Mleft">Contact me!</h1>
+            <div class="w3-padding-32">
+                    <a href="https://www.linkedin.com/in/kathleen-flores-3761371b4/"><i class="Mleft fa fa-linkedin w3-hover-text-red w3-xxxlarge"></i></a>
+                    <a href="https://twitter.com/katcflores"><i class="mleft fa fa-twitter w3-hover-text-light-blue w3-xxxlarge"></i></a>
+                    <a href="https://github.com/kathcflores"><i class="mleft fa fa-fab fa-github w3-hover-text-red w3-xxxlarge"></i></a>
+                    <a href="https://www.facebook.com/kathcflores/"><i class="mleft fa fa-facebook-official w3-hover-text-light-blue w3-xxxlarge"></i></a>
+                    <ul id="link-list" style="list-style-type: none; display: none;"></ul>
             </div>
-               
-            <div class="twitter">
-                <a href="https://twitter.com/katcflores">
-                    <h2><i class="fa fa-twitter w3-hover-text-light-blue"></i></h2>
-                </a>
-            </div>
-
-            <div class="github">
-                <a href="https://github.com/kathcflores" target="_blank">
-                    <h2><i class="fa fa-fab fa-github w3-hover-text-red"></i></h2>
-                </a>
-            </div>
-
-            <div class="facebook">
-                <a href="https://www.facebook.com/kathcflores/" target="_blank">
-                    <h2><i class="fa fa-facebook-official w3-hover-text-light-blue "></i></h2>
-                </a>
-            </div>    
         </div>
-        <div class="w3-row-padding"></div>
+
+        <div class="w3-display-container w3-right">
+            <img src="images/left.png" style="width: 400px; height: 400px;">
+        </div>
+
+        <div class="w3-row-padding w3-padding-64"></div>
 
         <div class="w3-center">
             <a href="#home" class="w3-button w3-white w3-text-dark-gray"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
         </div>
         
     </section>
-
+   
     </main>
 <!-- form -->
 <div class = "login">  

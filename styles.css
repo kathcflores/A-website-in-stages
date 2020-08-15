@@ -10,13 +10,25 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica}
 } 
 
 /* Lists */
+li span{
+  display: block;
+}
+
 .same{
   list-style-type: none;
   padding: 0;
   overflow-y: auto;
  }
 
-.same li{
+ 
+.same li span:nth-child(2), span:nth-child(3), span:nth-child(4){
+  font-size: 16px;
+  margin-top: 6px;
+  color: white;
+}
+
+/* education */
+#edu-list li{
   padding: 20px;
   background: #5CE1E6;
   font-size: 20px;
@@ -27,23 +39,53 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica}
   height: 150px;
 }
 
-.same li:nth-child(1){
+#edu-list li:nth-child(1){
   border-radius: 0px 110px 0px 0px;
 }
 
-.same li:nth-child(even){
+#edu-list li:nth-child(even){
   padding: 20px;
   background: #F7A3B1;
 }
-
-li span{
-  display: block;
+/* organization */
+#org-list li{
+  padding: 20px;
+  background: #5CE1E6;
+  font-size: 20px;
+  color: #0d203b;
+  padding: 16px;
+  position: relative;
+  border-bottom: 1px solid #e6e6e6;
+  height: 150px;
 }
 
-.same li span:nth-child(2), span:nth-child(3), span:nth-child(4){
-  font-size: 16px;
-  margin-top: 6px;
-  color: white;
+#org-list li:nth-child(1){
+  border-radius: 0px 110px 0px 0px;
+}
+
+#org-list li:nth-child(even){
+  padding: 20px;
+  background: #65c6f4;
+}
+/* works */
+#work-list li{
+  padding: 20px;
+  background: #F7A3B1;
+  font-size: 20px;
+  color: #0d203b;
+  padding: 16px;
+  position: relative;
+  border-bottom: 1px solid #e6e6e6;
+  height: 150px;
+}
+
+#work-list li:nth-child(1){
+  border-radius: 0px 110px 0px 0px;
+}
+
+#work-list li:nth-child(even){
+  padding: 20px;
+  background: #f85c70;
 }
 
 li div{
@@ -63,4 +105,12 @@ li div{
 li div:hover{
   background: #65c6f4;
   color: white;
+}
+
+.Mleft{
+  margin-left: 30%;
+}
+
+.mleft{
+  margin-left: 50px;
 }
