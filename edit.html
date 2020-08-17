@@ -90,13 +90,7 @@
             var defaultProject = firebase.initializeApp(firebaseconfig);
             var db = firebase.firestore();
             
-            firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
 
-            } else {
-                location.href="/index.html"
-            }
-            });
 
              $("main").hide();
             
